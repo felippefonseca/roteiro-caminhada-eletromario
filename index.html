@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roteiro de Gravação — Caminhada Eletromário</title>
+  <style>
+    :root {
+      --black: #111111;
+      --dark: #1c1c1c;
+      --mid: #2e2e2e;
+      --border: #333333;
+      --gold: #c9a84c;
+      --gold-light: #e8c96e;
+      --text: #e0e0e0;
+      --muted: #888888;
+      --bg: #161616;
+      --card: #1e1e1e;
+      --accent-bg: #242424;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── COVER ── */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 40px;
+      background: var(--black);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 80px; height: 2px;
+      background: var(--gold);
+    }
+
+    .cover .agency-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7em;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .cover h1 {
+      font-size: clamp(2.2em, 5vw, 3.8em);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .cover h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .cover .subtitle {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85em;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-top: 32px;
+    }
+
+    .cover .meta-row {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cover .meta-item {
+      text-align: center;
+    }
+
+    .cover .meta-item .label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65em;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .cover .meta-item .value {
+      font-size: 1em;
+      color: #ccc;
+    }
+
+    /* ── INTRO SECTION ── */
+    .intro-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro-section h2 {
+      font-size: 0.7em;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .intro-section p {
+      font-size: 1.05em;
+      line-height: 1.8;
+      color: #bbb;
+    }
+
+    .intro-section p + p {
+      margin-top: 16px;
+    }
+
+    .opening-box {
+      background: var(--accent-bg);
+      border-left: 3px solid var(--gold);
+      padding: 24px 28px;
+      margin-top: 32px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .opening-box .box-title {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7em;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .opening-box p {
+      font-size: 0.95em;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    /* ── VIDEO CARD ── */
+    .video-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .video-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .video-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .video-number {
+      font-family: 'Arial', sans-serif;
+      font-size: 3.5em;
+      font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .video-header-text {}
+
+    .video-tag {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65em;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .video-title {
+      font-size: 1.9em;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+    }
+
+    .video-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .meta-cell {
+      background: var(--card);
+      padding: 16px 20px;
+    }
+
+    .meta-cell .meta-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.6em;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .meta-cell .meta-value {
+      font-size: 0.9em;
+      color: #ccc;
+      line-height: 1.4;
+    }
+
+    /* ── SCENE TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 8px; bottom: 8px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .scene-block {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .scene-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .scene-block::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+
+    .scene-time {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65em;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .scene-name {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.8em;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .scene-body {
+      background: var(--card);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .scene-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0;
+    }
+
+    .scene-row + .scene-row {
+      border-top: 1px solid var(--border);
+    }
+
+    .scene-row-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.6em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 14px 16px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      padding-top: 16px;
+    }
+
+    .scene-row-content {
+      padding: 14px 18px;
+      font-size: 0.9em;
+      color: #bbb;
+      line-height: 1.65;
+    }
+
+    .scene-row-content .fala {
+      color: #ddd;
+      font-style: italic;
+    }
+
+    .scene-row-content .speaker {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+      font-style: normal;
+    }
+
+    /* ── COPY BOX ── */
+    .copy-box {
+      margin-top: 32px;
+      background: var(--accent-bg);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--gold);
+      border-radius: 0 0 6px 6px;
+      padding: 20px 24px;
+    }
+
+    .copy-box .copy-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.6em;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .copy-box .copy-text {
+      font-size: 0.9em;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    /* ── DIRECTION NOTE ── */
+    .direction-note {
+      background: var(--mid);
+      border-left: 3px solid var(--muted);
+      padding: 12px 16px;
+      margin-top: 10px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.82em;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: var(--black);
+      padding: 80px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .final-cta .cta-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65em;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .final-cta h3 {
+      font-size: 1.8em;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 32px;
+    }
+
+    .cta-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .cta-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 14px 20px;
+      border-radius: 6px;
+      font-size: 0.9em;
+      color: #bbb;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--black);
+      padding: 32px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer p {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75em;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .footer .gold-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 16px auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .cover, .intro-section, .video-section, .final-cta, .footer {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .video-header { flex-direction: column; gap: 8px; }
+      .video-number { font-size: 2.5em; }
+      .video-title { font-size: 1.5em; }
+
+      .scene-row { grid-template-columns: 60px 1fr; }
+      .scene-row-label { font-size: 0.55em; padding: 12px 10px; }
+
+      .cover .meta-row { gap: 24px; }
+    }
+
+    @media print {
+      body { background: white; color: #111; }
+      .cover { background: white; min-height: auto; padding: 40px; }
+      .cover h1, .video-title { color: #111; }
+      .video-number { color: #ddd; }
+      .scene-body, .meta-cell, .copy-box, .opening-box { background: #f9f9f9; }
+      .scene-row-content, .copy-text, .intro-section p { color: #333; }
+      .scene-row-content .fala { color: #111; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CAPA -->
+  <section class="cover">
+    <p class="agency-label">Agência Fator</p>
+    <h1>Roteiro de Gravação<br><em>Caminhada Eletromário</em></h1>
+    <p class="subtitle">Acabamentos de Construção — Série de 5 Vídeos</p>
+    <div class="meta-row">
+      <div class="meta-item">
+        <p class="label">Cliente</p>
+        <p class="value">Eletromário Acabamentos</p>
+      </div>
+      <div class="meta-item">
+        <p class="label">Formato</p>
+        <p class="value">Reels / Vídeos Curtos</p>
+      </div>
+      <div class="meta-item">
+        <p class="label">Data</p>
+        <p class="value">Abril de 2026</p>
+      </div>
+      <div class="meta-item">
+        <p class="label">Duração por vídeo</p>
+        <p class="value">1:00 — 1:30 min</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRODUÇÃO -->
+  <section class="intro-section">
+    <h2>A Ideia Central</h2>
+    <p>A proposta desta série é tirar os especialistas de trás do balcão e levá-los para a rua. O movimento da caminhada traz dinamismo, prende a atenção e cria um clima de conversa entre amigos — não de vendedor falando para câmera.</p>
+    <p>Cada vídeo apresenta um membro da equipe em um ambiente externo agradável, respondendo a perguntas reais, compartilhando experiências e convidando o público a interagir. O tom é leve, humano e direto.</p>
+
+    <div class="opening-box">
+      <p class="box-title">Abertura Padrão — Todos os Vídeos</p>
+      <p><strong>Visual:</strong> Imagens em movimento da equipe caminhando em ambiente agradável (parque, orla, rua arborizada). Cortes rápidos e dinâmicos.</p>
+      <p style="margin-top:10px"><strong>Áudio:</strong> Música animada e instrumental. Sem voz neste momento.</p>
+      <p style="margin-top:10px"><strong>Texto na tela:</strong> "Eletromário: Transformando Ambientes com os Melhores Acabamentos" → "Uma Caminhada com a Nossa Equipe"</p>
+    </div>
+  </section>
+
+  <!-- VÍDEO 1 -->
+  <section class="video-section">
+    <div class="video-header">
+      <div class="video-number">01</div>
+      <div class="video-header-text">
+        <p class="video-tag">Especialista em Revestimentos</p>
+        <h2 class="video-title">O Segredo da Casa Perfeita</h2>
+      </div>
+    </div>
+
+    <div class="video-meta">
+      <div class="meta-cell">
+        <p class="meta-label">Participante</p>
+        <p class="meta-value">Ana — Especialista em Porcelanatos</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Cenário</p>
+        <p class="meta-value">Parque com áreas verdes, banco ou árvore para apoio</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Equipamento</p>
+        <p class="meta-value">Celular horizontal + lapela</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Duração</p>
+        <p class="meta-value">1:00 — 1:30 min</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="scene-block">
+        <p class="scene-time">0:00 — 0:10</p>
+        <p class="scene-name">Abertura e Apresentação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Ana caminhando de forma descontraída, sorrindo para a câmera. Câmera acompanha o movimento.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Ana</p>
+              <p class="fala">"Oi, pessoal! Eu sou a Ana, especialista em revestimentos aqui na Eletromário. Hoje, durante a nossa caminhada, quero bater um papo sobre o que a gente faz de melhor: ajudar você a escolher o revestimento certo para o seu projeto."</p>
+            </div>
+          </div>
+        </div>
+        <p class="direction-note">Direção: deixar Ana falar com naturalidade, sem pressa. Se ela improvisar alguma palavra, tudo bem — o que importa é a energia e o sorriso.</p>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:10 — 0:30</p>
+        <p class="scene-name">A Pergunta do Especialista</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Ana para em um ponto estratégico, olha diretamente para a câmera. Postura aberta, gesticulando.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Ana, qual é o revestimento mais versátil que você indicaria e por quê?"</p>
+              <br>
+              <p class="speaker">Ana</p>
+              <p class="fala">"Sem dúvida, o porcelanato. Ele é resistente, fácil de limpar e tem uma variedade incrível — do rústico ao polido. Dá pra usar em qualquer ambiente. É a base perfeita pra qualquer projeto."</p>
+            </div>
+          </div>
+        </div>
+        <p class="direction-note">Direção: a pergunta da Bárbara pode ser gravada separado e editada depois. O importante é que a resposta da Ana pareça uma conversa real, não uma declamação.</p>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:30 — 0:50</p>
+        <p class="scene-name">A Dica Prática</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Ana retoma a caminhada, gesticulando de forma natural enquanto fala.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Ana</p>
+              <p class="fala">"E uma dica rápida: pensa sempre na área de aplicação. Banheiro, área externa — precisa ser antiderrapante. Parece detalhe, mas faz toda a diferença. Na Eletromário, a gente te ajuda a não errar nessa escolha."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:50 — 1:10</p>
+        <p class="scene-name">Chamada para Ação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Ana para, olha para a câmera com um sorriso convidativo.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"E pra vocês: qual revestimento não pode faltar na sua casa? Conta pra gente nos comentários!"</p>
+              <br>
+              <p class="speaker">Ana</p>
+              <p class="fala">"Isso! E se quiserem saber mais, venham tomar um café com a gente na Eletromário. Temos um mundo de possibilidades esperando por vocês."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">1:10 — 1:30</p>
+        <p class="scene-name">Encerramento</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Ana continua caminhando. Câmera vai se afastando lentamente. Tela final com logo da Eletromário e Agência Fator.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Áudio</p>
+            <p class="scene-row-content">Música de fundo sobe suavemente.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="copy-box">
+      <p class="copy-label">Copy para Legenda</p>
+      <p class="copy-text">Porcelanato: o revestimento mais versátil da construção. 🏡 Mas atenção: a escolha certa depende do ambiente. Vem na Eletromário que a gente te ajuda a acertar na primeira! Qual revestimento não pode faltar na sua casa? Conta nos comentários 👇 #Eletromario #Revestimentos #DicaDeObra</p>
+    </div>
+  </section>
+
+  <!-- VÍDEO 2 -->
+  <section class="video-section">
+    <div class="video-header">
+      <div class="video-number">02</div>
+      <div class="video-header-text">
+        <p class="video-tag">Designer de Interiores e Tendências</p>
+        <h2 class="video-title">Inovação e Estilo: O que está em alta</h2>
+      </div>
+    </div>
+
+    <div class="video-meta">
+      <div class="meta-cell">
+        <p class="meta-label">Participante</p>
+        <p class="meta-value">Pedro — Consultor de Design</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Cenário</p>
+        <p class="meta-value">Rua com arquitetura interessante ou próximo a um showroom</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Equipamento</p>
+        <p class="meta-value">Celular horizontal + lapela</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Duração</p>
+        <p class="meta-value">1:00 — 1:30 min</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="scene-block">
+        <p class="scene-time">0:00 — 0:10</p>
+        <p class="scene-name">Abertura e Apresentação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Pedro caminhando com energia, apontando para detalhes arquitetônicos ao redor.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Pedro</p>
+              <p class="fala">"Oi, gente! Sou o Pedro, consultor de design da Eletromário. Sou apaixonado por transformar espaços, e hoje a gente vai falar de tendências. Vou te mostrar como o acabamento certo muda completamente a cara de um ambiente."</p>
+            </div>
+          </div>
+        </div>
+        <p class="direction-note">Direção: Pedro pode apontar para uma fachada ou detalhe arquitetônico real enquanto fala. Isso torna a cena mais viva e menos "ensaiada".</p>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:10 — 0:30</p>
+        <p class="scene-name">A Tendência do Momento</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Pedro para, talvez segurando um catálogo ou amostra de material.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Pedro, qual tendência de acabamento está em alta e como ela se aplica em diferentes estilos?"</p>
+              <br>
+              <p class="speaker">Pedro</p>
+              <p class="fala">"Os acabamentos naturais e texturizados estão dominando. Revestimentos que imitam madeira, pedra, cimento queimado — eles trazem aconchego e sofisticação ao mesmo tempo. Funcionam tanto no rústico quanto no moderno. A chave é saber equilibrar."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:30 — 0:50</p>
+        <p class="scene-name">A Combinação Perfeita</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Pedro gesticula, simulando como os materiais podem ser combinados no espaço.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Pedro</p>
+              <p class="fala">"Imagina uma parede com revestimento que imita pedra, combinada com um piso amadeirado. O resultado é elegante e acolhedor. Na Eletromário, a gente tem uma curadoria incrível pra te ajudar a criar essas combinações únicas."</p>
+            </div>
+          </div>
+        </div>
+        <p class="direction-note">Direção: Pedro pode usar as mãos para "desenhar" o ambiente no ar enquanto descreve a combinação. Isso ajuda o espectador a visualizar e torna a cena mais dinâmica.</p>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:50 — 1:10</p>
+        <p class="scene-name">Chamada para Ação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Pedro olha diretamente para a câmera, com entusiasmo genuíno.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Qual estilo de decoração vocês mais gostam e que acabamento usariam? Conta pra gente!"</p>
+              <br>
+              <p class="speaker">Pedro</p>
+              <p class="fala">"Fiquem ligados nas nossas redes pra não perder nenhuma dica. E venham ver de perto essas inovações na Eletromário!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">1:10 — 1:30</p>
+        <p class="scene-name">Encerramento</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Pedro continua caminhando. Tela final com logos e redes sociais.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Áudio</p>
+            <p class="scene-row-content">Música de fundo sobe suavemente.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="copy-box">
+      <p class="copy-label">Copy para Legenda</p>
+      <p class="copy-text">Madeira, pedra, cimento queimado... os acabamentos naturais estão dominando os projetos de 2026. ✨ E a Eletromário tem tudo isso pra você criar combinações únicas. Qual estilo é a cara da sua casa? Comenta aqui 👇 #Eletromario #Tendencias #DesignDeInteriores</p>
+    </div>
+  </section>
+
+  <!-- VÍDEO 3 -->
+  <section class="video-section">
+    <div class="video-header">
+      <div class="video-number">03</div>
+      <div class="video-header-text">
+        <p class="video-tag">Mestre da Instalação</p>
+        <h2 class="video-title">Além da Escolha: A Instalação que Faz a Diferença</h2>
+      </div>
+    </div>
+
+    <div class="video-meta">
+      <div class="meta-cell">
+        <p class="meta-label">Participante</p>
+        <p class="meta-value">Carlos — Técnico de Instalação</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Cenário</p>
+        <p class="meta-value">Bairro residencial com obras visíveis ao fundo (com segurança)</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Equipamento</p>
+        <p class="meta-value">Celular horizontal + lapela</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Duração</p>
+        <p class="meta-value">1:00 — 1:30 min</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="scene-block">
+        <p class="scene-time">0:00 — 0:10</p>
+        <p class="scene-name">Abertura e Apresentação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Carlos caminhando, talvez com uma trena ou nível na mão — um detalhe que reforça sua identidade.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Carlos</p>
+              <p class="fala">"E aí, pessoal! Sou o Carlos, da equipe de instalação da Eletromário. Muita gente não sabe, mas a instalação correta é tão importante quanto a escolha do acabamento. Um bom trabalho garante a beleza e a durabilidade do seu investimento."</p>
+            </div>
+          </div>
+        </div>
+        <p class="direction-note">Direção: o detalhe da trena ou nível na mão é um elemento visual forte. Carlos pode até fazer uma medição rápida em algo ao redor enquanto fala — torna a cena mais autêntica.</p>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:10 — 0:30</p>
+        <p class="scene-name">O Erro Mais Comum</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Carlos para, encostado em um muro ou banco, com postura de quem vai contar um segredo.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Carlos, qual é o erro mais comum que as pessoas cometem na instalação de acabamentos?"</p>
+              <br>
+              <p class="speaker">Carlos</p>
+              <p class="fala">"Negligenciar a preparação da superfície. Um contrapiso irregular ou uma parede mal nivelada compromete tudo. A dica é: sempre contrate profissionais qualificados e use os materiais certos pra cada tipo de acabamento. Na Eletromário, a gente te orienta em tudo isso."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:30 — 0:50</p>
+        <p class="scene-name">O Valor do Suporte Técnico</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Carlos retoma a caminhada, gesticulando para enfatizar a importância do serviço.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Carlos</p>
+              <p class="fala">"É por isso que o suporte técnico importa tanto. Não é só vender o produto — é garantir que ele seja aplicado do jeito certo, pra você ter o resultado que esperava sem dor de cabeça depois. Na Eletromário, você tem essa tranquilidade."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:50 — 1:10</p>
+        <p class="scene-name">Chamada para Ação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Carlos olha diretamente para a câmera, com sorriso confiante.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Vocês já tiveram alguma experiência com instalação de acabamentos? Compartilhem suas dicas ou desafios!"</p>
+              <br>
+              <p class="speaker">Carlos</p>
+              <p class="fala">"Conta com a Eletromário não só pra escolher os melhores produtos, mas pra ter a garantia de uma instalação perfeita e duradoura!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">1:10 — 1:30</p>
+        <p class="scene-name">Encerramento</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Carlos continua caminhando. Tela final com logos e redes sociais.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Áudio</p>
+            <p class="scene-row-content">Música de fundo sobe suavemente.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="copy-box">
+      <p class="copy-label">Copy para Legenda</p>
+      <p class="copy-text">Você sabia que a instalação errada pode arruinar o acabamento mais caro? 🔧 A preparação da superfície é o segredo que ninguém conta. Na Eletromário, a gente te orienta do começo ao fim. Já passou por algum perrengue de instalação? Conta aqui 👇 #Eletromario #Instalacao #DicaDeObra</p>
+    </div>
+  </section>
+
+  <!-- VÍDEO 4 -->
+  <section class="video-section">
+    <div class="video-header">
+      <div class="video-number">04</div>
+      <div class="video-header-text">
+        <p class="video-tag">Variedade e Estoque</p>
+        <h2 class="video-title">Nos Bastidores: O Coração da Loja</h2>
+      </div>
+    </div>
+
+    <div class="video-meta">
+      <div class="meta-cell">
+        <p class="meta-label">Participante</p>
+        <p class="meta-value">Sofia — Responsável pelo Estoque</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Cenário</p>
+        <p class="meta-value">Calçadão ou praça ampla, com espaço para caminhar e gesticular</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Equipamento</p>
+        <p class="meta-value">Celular horizontal + lapela</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Duração</p>
+        <p class="meta-value">1:00 — 1:30 min</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="scene-block">
+        <p class="scene-time">0:00 — 0:10</p>
+        <p class="scene-name">Abertura e Apresentação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Sofia caminhando com sorriso, talvez segurando uma amostra de revestimento.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Sofia</p>
+              <p class="fala">"Olá! Eu sou a Sofia, e sou responsável por garantir que todos os acabamentos que vocês procuram estejam sempre disponíveis na Eletromário. É um trabalho que exige organização e muita paixão pelos detalhes!"</p>
+            </div>
+          </div>
+        </div>
+        <p class="direction-note">Direção: Sofia pode mostrar a amostra para a câmera rapidamente ao se apresentar. Um gesto simples que conecta ela ao produto e ao trabalho dela.</p>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:10 — 0:30</p>
+        <p class="scene-name">A Variedade que Surpreende</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Sofia para, olhando para a câmera com entusiasmo.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Sofia, qual tipo de acabamento mais surpreende os clientes pela variedade e como vocês mantêm o estoque sempre atualizado?"</p>
+              <br>
+              <p class="speaker">Sofia</p>
+              <p class="fala">"Nossa seção de pisos e revestimentos é um show à parte! Temos desde porcelanatos que imitam mármore e madeira até pastilhas decorativas e opções cimentícias. Pra manter tudo atualizado, a gente monitora tendências, faz parcerias com os melhores fornecedores e tem uma equipe dedicada que organiza tudo pra o produto certo estar sempre na prateleira certa."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:30 — 0:50</p>
+        <p class="scene-name">A Paixão pela Organização</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Sofia retoma a caminhada, gesticulando para ilustrar a organização.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Sofia</p>
+              <p class="fala">"Nosso estoque é o reflexo da nossa paixão por oferecer o melhor. Uma boa organização significa que o cliente encontra o que precisa rápido, com a certeza de que está levando qualidade. É um trabalho que exige muita atenção aos detalhes."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:50 — 1:10</p>
+        <p class="scene-name">Chamada para Ação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Sofia olha diretamente para a câmera, com um olhar convidativo.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Qual acabamento vocês sempre encontram na Eletromário e que faz a diferença no projeto de vocês?"</p>
+              <br>
+              <p class="speaker">Sofia</p>
+              <p class="fala">"Venham conferir a variedade! Nosso estoque está sempre abastecido pra atender todas as suas necessidades."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">1:10 — 1:30</p>
+        <p class="scene-name">Encerramento</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Sofia continua caminhando. Tela final com logos e redes sociais.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Áudio</p>
+            <p class="scene-row-content">Música de fundo sobe suavemente.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="copy-box">
+      <p class="copy-label">Copy para Legenda</p>
+      <p class="copy-text">Mármore, madeira, pastilha, cimento queimado... tudo em um só lugar. 🏪 Conheça os bastidores de quem garante que você sempre encontre o que precisa na Eletromário. Qual acabamento você sempre acha aqui? Conta nos comentários 👇 #Eletromario #Acabamentos #Estoque</p>
+    </div>
+  </section>
+
+  <!-- VÍDEO 5 -->
+  <section class="video-section">
+    <div class="video-header">
+      <div class="video-number">05</div>
+      <div class="video-header-text">
+        <p class="video-tag">Atendimento Personalizado</p>
+        <h2 class="video-title">Seu Projeto, Nossa Prioridade</h2>
+      </div>
+    </div>
+
+    <div class="video-meta">
+      <div class="meta-cell">
+        <p class="meta-label">Participante</p>
+        <p class="meta-value">Gabriel — Consultor de Vendas</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Cenário</p>
+        <p class="meta-value">Jardim público ou orla, ambiente agradável e acolhedor</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Equipamento</p>
+        <p class="meta-value">Celular horizontal + lapela</p>
+      </div>
+      <div class="meta-cell">
+        <p class="meta-label">Duração</p>
+        <p class="meta-value">1:00 — 1:30 min</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="scene-block">
+        <p class="scene-time">0:00 — 0:10</p>
+        <p class="scene-name">Abertura e Apresentação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Gabriel caminhando com sorriso simpático, gesticulando como se estivesse conversando com um cliente.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Gabriel</p>
+              <p class="fala">"E aí, galera! Sou o Gabriel, e meu trabalho é garantir que cada cliente que entra na Eletromário realize o projeto dos seus sonhos. Adoro ajudar a transformar ideias em realidade com os acabamentos perfeitos!"</p>
+            </div>
+          </div>
+        </div>
+        <p class="direction-note">Direção: Gabriel é o mais "vendedor" do grupo, mas precisa parecer genuíno. O sorriso tem que ser real. Pedir pra ele pensar em um cliente que ele ajudou de verdade antes de gravar ajuda a trazer essa energia.</p>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:10 — 0:30</p>
+        <p class="scene-name">A História Real</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Gabriel para, com um ar pensativo e depois sorrindo — como quem está lembrando de algo bom.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Gabriel, qual foi o projeto mais inspirador que você já ajudou a concretizar aqui na Eletromário?"</p>
+              <br>
+              <p class="speaker">Gabriel</p>
+              <p class="fala">"Uma vez, ajudei um casal a reformar o apartamento inteiro — do piso à iluminação. Eles tinham muitas ideias, mas estavam perdidos na escolha dos materiais. O segredo foi a escuta ativa. Sugeri combinações que eles nunca tinham imaginado, e o resultado foi um lar que superou todas as expectativas deles. Ver a alegria deles foi gratificante demais."</p>
+            </div>
+          </div>
+        </div>
+        <p class="direction-note">Direção: esta é a cena mais poderosa do vídeo. Gabriel precisa contar essa história como se fosse a primeira vez — com emoção genuína. Se ele tiver uma história real parecida, usar a real é sempre melhor.</p>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:30 — 0:50</p>
+        <p class="scene-name">O Valor do Atendimento</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Gabriel retoma a caminhada, com olhar acolhedor.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Gabriel</p>
+              <p class="fala">"Na Eletromário, o seu projeto é a nossa prioridade. A gente não quer só vender — quer entender a sua visão e oferecer as melhores soluções pra que o seu espaço fique exatamente como você sonhou. Um bom atendimento faz toda a diferença na hora de construir ou reformar."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">0:50 — 1:10</p>
+        <p class="scene-name">Chamada para Ação</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Gabriel olha diretamente para a câmera, com um convite genuíno.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Fala</p>
+            <div class="scene-row-content">
+              <p class="speaker">Bárbara (off-screen)</p>
+              <p class="fala">"Qual é o projeto dos sonhos de vocês pra casa? Compartilhem as ideias!"</p>
+              <br>
+              <p class="speaker">Gabriel</p>
+              <p class="fala">"Venham nos visitar na Eletromário e sintam a diferença de um atendimento feito com carinho, onde você é a nossa prioridade. Esperamos por vocês pra transformar seus ambientes!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-block">
+        <p class="scene-time">1:10 — 1:30</p>
+        <p class="scene-name">Encerramento</p>
+        <div class="scene-body">
+          <div class="scene-row">
+            <p class="scene-row-label">Visual</p>
+            <p class="scene-row-content">Gabriel continua caminhando. Tela final com logos e redes sociais.</p>
+          </div>
+          <div class="scene-row">
+            <p class="scene-row-label">Áudio</p>
+            <p class="scene-row-content">Música de fundo sobe suavemente.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="copy-box">
+      <p class="copy-label">Copy para Legenda</p>
+      <p class="copy-text">Cada projeto tem uma história. ✨ E a nossa missão é fazer a sua história ter o melhor final possível. Venha conhecer o atendimento personalizado da Eletromário — onde o seu projeto é a nossa prioridade. Qual é o projeto dos seus sonhos? Conta aqui 👇 #Eletromario #AtendimentoPersonalizado #Acabamentos</p>
+    </div>
+  </section>
+
+  <!-- CHAMADA FINAL -->
+  <section class="final-cta">
+    <p class="cta-label">Tela Final — Todos os Vídeos</p>
+    <h3>Chamada para Ação Final</h3>
+    <div class="cta-items">
+      <div class="cta-item">Gostou? Curta, Comente e Compartilhe!</div>
+      <div class="cta-item">Visite a Eletromário e Descubra o Mundo dos Acabamentos!</div>
+      <div class="cta-item">Siga-nos nas Redes Sociais!</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Roteiro de Gravação — Caminhada Eletromário</p>
+    <div class="gold-line"></div>
+    <p>Agência Fator · Abril de 2026</p>
+  </footer>
+
+</body>
+</html>
